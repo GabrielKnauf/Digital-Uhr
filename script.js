@@ -1,16 +1,22 @@
-let hoursElement = document.getElementById("hours");
-let minutesElement = document.getElementById("minutes");
-let secondsElement = document.getElementById("seconds");
+const hoursElement   = document.getElementById('hours')
+const minutesElement = document.getElementById('minutes')
+const secondsElement = document.getElementById('seconds')
 
-function liveUhr(){
-const date = new Date();
-const hours = date.getHours().toString().padStart(2, "0");
-const minutes = date.getMinutes().toString().padStart(2, "0");
-const seconds = date.getSeconds().toString().padStart(2, "0");
 
-hoursElement.textContent = hours
-minutesElement.textContent = minutes
-secondsElement.textContent = seconds
+function fixTime(time){
+    return time < 10 ? '0'+time : time
 }
-liveUhr()
-setInterval( liveUhr, 1000);
+
+function newTime(){
+    const date    = new Date()
+    const hours   = date.getHours()
+    const minutes = date.getMinutes()
+    const seconds = date.getSeconds()
+    
+    hoursElement.textContent   = fixTime(hours)
+    minutesElement.textContent = fixTime(minutes)
+    secondsElement.textContent = fixTime(seconds)
+}
+
+newTime()
+setInterval(newTime, 1000)
